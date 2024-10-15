@@ -1,0 +1,20 @@
+{
+  "name": "scraper-theparking-eu",
+  "version": "1.0.0",
+  "description": "Extract car details from theparking.eu",
+  "main": "main.js",
+  "scripts": {
+    "inst": "rm -rf node_modules && rm package-lock.json && npm install",
+    "inst-win": "rmdir /S /Q node_modules && del package-lock.json && npm install"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@mikosoft/echo": "^1.0.1",
+    "@mikosoft/functionflow": "^1.0.5",
+    "cheerio": "^1.0.0",
+    "pg": "^8.13.0",
+    "pptr-plus": "^1.0.2",
+    "puppeteer-core": "^23.4.0",
+    "sequelize": "^6.37.4"
+  }
+}

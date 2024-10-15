@@ -1,0 +1,8 @@
+{
+  "title": "scraper-theparking-eu",
+  "description": "Extract car details from theparking.eu",
+  "category": "cli",
+  "thumbnail": "",
+  "environment": "nodejs",
+  "worker_response_timeout": 5000
+}
