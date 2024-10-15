@@ -47,7 +47,11 @@ The purpose of this file is to store secret parameters, credentials, passwords, 
 generally it's same as input.json
 ```json
 {
-  "mongoURI": "mongodb://user:pass@95.11.24.14:27017/db_name"
+  "PG_USERNAME": "carfinder",
+  "PG_PASSWORD":"xyz",
+  "PG_HOST":"95.11.29.12",
+  "PG_PORT":"5432",
+  "PG_DATABASE": "autocars"
 }
 ```
 
