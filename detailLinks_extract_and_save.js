@@ -63,13 +63,14 @@ module.exports = async (x, lib) => {
     let totalCars;
     try {
       await upsertCar(car_info, lib);
-      totalCars = await countCars();
+      totalCars = await countCars(lib);
     } catch (err) {
+      console.log(err);
       await echo.error(err);
     }
 
     // debug
-    await echo.warn(` cars total in db: ${totalCars}`);
+    await echo.warn(` "cars" count: ${totalCars}`);
     await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.color} | ${car_info.doors} | ${car_info.category} | ${car_info.ad_title}`);
     await echo.log();
 
@@ -86,35 +87,26 @@ module.exports = async (x, lib) => {
 
 const upsertCar = async (car_info, lib) => {
   const { echo, postgreSQL } = lib;
-
   const carsMD = postgreSQL.sequelize.models['carsMD'];
   const result_arr = await carsMD.upsert(car_info);
   const result_obj = result_arr[0];
   // console.log(result_obj);
-
-  if (result_obj.isNewRecord) {
-    await echo.warn(' \u2713 saved new doc_id: ', result_obj.dataValues.car_id);
-  } else {
-    await echo.warn(' \u2713 updated doc_id: ', result_obj.dataValues.car_id);
-  }
+  await echo.warn(' \u2713 saved new doc_id: ', result_obj.dataValues.car_id);
 };
 
 
 const carExists = async (car_detail_url, lib) => {
-  const { echo, postgreSQL } = lib;
-
+  const { postgreSQL } = lib;
   const carsMD = postgreSQL.sequelize.models['carsMD'];
-
   const record = await carsMD.findOne({
     where: { car_detail_url }
   });
-
   return !!record;
 };
 
 
 const countCars = async (lib) => {
-  const { echo, postgreSQL } = lib;
+  const { postgreSQL } = lib;
   const carsMD = postgreSQL.sequelize.models['carsMD'];
   const totalCars = await carsMD.count();
   return totalCars;

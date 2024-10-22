@@ -16,6 +16,7 @@ module.exports = async (x, lib) => {
     timeout: 3000
   }).catch(err => console.log(err.message));
 
+
   await echo.log(' ...reload home page');
   await page.reload();
 
@@ -25,7 +26,6 @@ module.exports = async (x, lib) => {
     await accept_EH.click();
   }
 
-
   const agree_EH = await page.waitForSelector('button[mode="primary"]', { timeout: 3400 }).catch(err => console.log(err.message));
   if (agree_EH) {
     await echo.log(' clicked "Agree" button');
@@ -34,9 +34,10 @@ module.exports = async (x, lib) => {
 
   await ff.delay(1300);
 
-  //type search term
+  // type search term
   await echo.log(` type search term: "${search_term}"`);
   await page.type('input#inputString', search_term, { delay: 30 });
+
 
   return x;
 };

@@ -2,14 +2,17 @@ module.exports = async (x, lib) => {
   const echo = lib.echo;
   const ff = lib.ff;
   const page = lib.page;
-  const searchpage_url = x.searchpage_url;
+  // const searchpage_url = x.searchpage_url;
 
   await echo.log('----- searchResults_next -----');
 
-  // close the advert by reloading the page
-  await page.goto(searchpage_url);
+  // close the advert
+  await page.click('div.wrap-header');
   await ff.delay(1300);
-  await echo.log(` page re-opened: ${searchpage_url}`);
+  await page.click('div.wrap-header');
+  await echo.log(' closed advert');
+
+
 
   // go to next page
   const nextLink_EH = await page.waitForSelector('li.btn-next>a', { timeout: 3400 }).catch(err => console.log('WARNING:', err.message));

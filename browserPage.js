@@ -7,9 +7,9 @@ const os = require('os');
  * Open the browser and a tab.
  */
 module.exports = async (x, lib) => {
-  const ff = lib.ff;
-  const echo = lib.echo;
-  const headless = lib.input.headless;
+  const { ff, echo, input } = lib;
+  const headless = input.headless;
+  const userAgent = input.userAgent ?? 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36';
 
   /*** start the browser ***/
   // define chrome executable path
@@ -56,19 +56,36 @@ module.exports = async (x, lib) => {
   });
 
 
+  /*** set user-agent ***/
+  await page.setUserAgent(userAgent);
+  await echo.log(` userAgent: ${userAgent}`);
+
+
   /*** override navigator.webdriver to false (navigator.languages, navigator.plugins) ***/
   await page.evaluateOnNewDocument(() => {
     Object.defineProperty(navigator, 'webdriver', {
       get: () => false,
     });
   });
-  const isWebdriverFalse = await page.evaluate(() => navigator.webdriver === false); // Check if navigator.webdriver is set to false
-  console.log('navigator.webdriver is set to false:', isWebdriverFalse);
+  const isWebdriverFalse = await page.evaluate(() => navigator.webdriver === false); // check if navigator.webdriver is set to false
+  await echo.log(' navigator.webdriver is set to false:', isWebdriverFalse ? 'YES' : 'NO');
 
 
   /*** pptr-plus ***/
   const pptrPlus = new PptrPlus(page);
   ff.libAdd({ browser, page, pptrPlus });
+
+
+  // Set the cookies before navigating to the page
+  // await page.setCookie(...cookies);
+  // await echo.log(' cookies loaded');
+
+  /*** set cookie, local and session storage (Cloudflare protection) ***/
+  await pptrPlus.cookieTake('./www.theparking.eu.cookies.json');
+  await pptrPlus.storageTake('./www.theparking.eu.localStorage.json', 'localStorage');
+  await pptrPlus.storageTake('./www.theparking.eu.sessionStorage.json', 'sessionStorage');
+
+
 
   return x;
 };

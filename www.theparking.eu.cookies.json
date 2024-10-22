@@ -1,0 +1,66 @@
+[
+  {
+    "name": "__gads",
+    "value": "ID=23eda28a0f902d58:T=1728978505:RT=1729503278:S=ALNI_MbmAzuNRHvcAfDBzeTlFoML6-HLkA",
+    "domain": ".theparking.eu",
+    "path": "/",
+    "expires": 1762674505,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__gpi",
+    "value": "UID=00000f3ec339f0c3:T=1728978505:RT=1729503278:S=ALNI_Ma5KmYdyCqQNdRhALlNUS7bBEhbxQ",
+    "domain": ".theparking.eu",
+    "path": "/",
+    "expires": 1762674505,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__eoi",
+    "value": "ID=be6423cf6ada774e:T=1728978505:RT=1729503278:S=AA-AfjZyQVxXNB9DNm2Oukmc-uV_",
+    "domain": ".theparking.eu",
+    "path": "/",
+    "expires": 1744530505,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "PHPSESSID",
+    "value": "08h62jihcm9ftoptahso5rqjt6",
+    "domain": "www.theparking.eu",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false
+  },
+  {
+    "name": "PKG",
+    "value": "PKG_241021",
+    "domain": "www.theparking.eu",
+    "path": "/",
+    "expires": 1734687343.442563,
+    "httpOnly": false,
+    "secure": false
+  },
+  {
+    "name": "flmgt",
+    "value": "r987t3456e",
+    "domain": "www.theparking.eu",
+    "path": "/",
+    "expires": 1738143342.85155,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "Strict"
+  },
+  {
+    "name": "parking_new_geolocator_cookie_id",
+    "value": "a%3A7%3A%7Bs%3A9%3A%22longitude%22%3Bs%3A7%3A%2218.7464%22%3Bs%3A8%3A%22latitude%22%3Bs%3A7%3A%2245.5035%22%3Bs%3A5%3A%22label%22%3Bs%3A5%3A%22Tenja%22%3Bs%3A6%3A%22region%22%3Bs%3A17%3A%22Osjecko-Baranjska%22%3Bs%3A7%3A%22country%22%3Bs%3A2%3A%22HR%22%3Bs%3A11%3A%22countryFull%22%3Bs%3A7%3A%22Croatia%22%3Bs%3A2%3A%22cp%22%3Bs%3A5%3A%2231207%22%3B%7D",
+    "domain": "www.theparking.eu",
+    "path": "/",
+    "expires": 1732095343.52867,
+    "httpOnly": false,
+    "secure": false
+  }
+]
