@@ -54,6 +54,7 @@ module.exports = async (x, lib) => {
     const price_and_unit_splitted = price_and_unit.split(' ');
     car_info.price_unit = price_and_unit_splitted[1] ?? ''; // €
     car_info.price = price_and_unit_splitted[0] ? +price_and_unit_splitted[0].replace(',', '') : null; // 1872
+    if (isNaN(car_info.price)) { car_info.price = null; }
 
     // image URL
     car_info.image_url = $(this).find('div.figure img[loading="lazy"]').attr('src') || '';
@@ -75,11 +76,11 @@ module.exports = async (x, lib) => {
     let mileage = $(this).find('div.bigScreen>ul.info.clearfix>li:nth-of-type(2)').text() || '';
     mileage = lib_text.optimise(mileage); // 14,016 Km
     const mileage_splitted = mileage.split(' ');
-    car_info.mileage_km = mileage_splitted[0] ? +mileage_splitted[0].replace(',', '') : null;
+    car_info.mileage_km = mileage_splitted[0] && /\d/.test(mileage_splitted[0]) ? +mileage_splitted[0].replace(',', '') : null;
 
     // year
     car_info.year = $(this).find('div.bigScreen>ul.info.clearfix>li:nth-child(3)').text() || '';
-    car_info.year = car_info.year ? +lib_text.optimise(car_info.year) : null;
+    car_info.year = car_info.year && /\d/.test(car_info.year) ? +lib_text.optimise(car_info.year) : null;
 
     // transmission
     car_info.transmission = $(this).find('div.bigScreen>ul.info.clearfix>li:nth-of-type(4)').text() || '';
