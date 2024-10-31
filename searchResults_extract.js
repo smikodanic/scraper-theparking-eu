@@ -92,7 +92,7 @@ module.exports = async (x, lib) => {
   // debug
   let i = 1;
   for (const car_info of x.car_infos) {
-    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.price} ${car_info.price_unit} | ${car_info.date_published} | ${car_info.location} | ${car_info.fuel} | ${car_info.mileage} | ${car_info.year} | ${car_info.transmission} | image_url: ${!!car_info.image_url} | car_detail_url: ${!!car_info.car_detail_url}`);
+    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.price} ${car_info.price_unit} | ${car_info.date_published} | ${car_info.location} | ${car_info.fuel} | ${car_info.mileage_km} km | ${car_info.year} | ${car_info.transmission} | image_url: ${!!car_info.image_url} | car_detail_url: ${!!car_info.car_detail_url}`);
     i++;
   }
 
