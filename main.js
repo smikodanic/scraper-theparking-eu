@@ -55,7 +55,7 @@ module.exports = async (input, inputSecret) => {
     searchResults_next]);
   await ff.repeat(input.max_search_pages);
 
-  // await ff.serial([browserClose]);
+  await ff.serial([browserClose]);
 
   return;
 };

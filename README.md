@@ -31,12 +31,13 @@ The scaper is using input parameters:
 ```json
 {
   "headless": false,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
   "search_term": "VW golf",
   "max_search_pages": 100
 }
 ```
 - **headless** -- puppeteer's headless parameter https://pptr.dev/guides/headless-modes/ - 'old', 'new', false  - use false to show the browser window
-- **search_term** -- the search term which scraper will initially enter in theparking.eu search form
+- **search_term** -- the search term which scraper will initially enter in theparking.eu search form, use "search_term": "-" to list all cars
 - **max_search_pages** -- max pagination, it determine how many search result pages the scraper will open
 
 NOTICE: The user can create different input.json files and use it with dex8 cli command. For example if user create input2.json the scraper should be started with **dex8 start -i input2.json -is inputSecret.json**.

@@ -1,5 +1,6 @@
 const PptrPlus = require('pptr-plus');
 const os = require('os');
+const path = require('path');
 
 
 
@@ -76,14 +77,16 @@ module.exports = async (x, lib) => {
   ff.libAdd({ browser, page, pptrPlus });
 
 
-  // Set the cookies before navigating to the page
-  // await page.setCookie(...cookies);
-  // await echo.log(' cookies loaded');
+  /*** set cookie, local and session storage before navigating to the page (Cloudflare protection) ***/
+  const cookie_path = path.join(__dirname, 'www.theparking.eu.cookies.json');
+  await pptrPlus.cookieTake(cookie_path);
+  await echo.log(' cookies loaded');
 
-  /*** set cookie, local and session storage (Cloudflare protection) ***/
-  await pptrPlus.cookieTake('./www.theparking.eu.cookies.json');
-  await pptrPlus.storageTake('./www.theparking.eu.localStorage.json', 'localStorage');
-  await pptrPlus.storageTake('./www.theparking.eu.sessionStorage.json', 'sessionStorage');
+  // const localStorage_path = path.join(__dirname, 'www.theparking.eu.localStorage.json');
+  // await pptrPlus.storageTake(localStorage_path, 'localStorage');
+
+  // const sessionStorage_path = path.join(__dirname, 'www.theparking.eu.sessionStorage.json');
+  // await pptrPlus.storageTake(sessionStorage_path, 'sessionStorage');
 
 
 
