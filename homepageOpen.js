@@ -14,19 +14,18 @@ module.exports = async (x, lib) => {
   await page.goto(url, {
     waitUntil: 'load',
     timeout: 3000
-  }).catch(err => console.log(err.message));
-
+  }).catch(err => echo.error(err));
 
   await echo.log(' ...reload home page');
   await page.reload();
 
-  const accept_EH = await page.waitForSelector('button > span[tabindex="-1"]', { timeout: 3400 }).catch(err => console.log(err.message));
+  const accept_EH = await page.waitForSelector('button > span[tabindex="-1"]', { timeout: 3400 }).catch(err => echo.error(err));
   if (accept_EH) {
     await echo.log(' clicked "Do not accept"');
     await accept_EH.click();
   }
 
-  const agree_EH = await page.waitForSelector('button[mode="primary"]', { timeout: 3400 }).catch(err => console.log(err.message));
+  const agree_EH = await page.waitForSelector('button[mode="primary"]', { timeout: 3400 }).catch(err => echo.error(err));
   if (agree_EH) {
     await echo.log(' clicked "Agree" button');
     await agree_EH.click();

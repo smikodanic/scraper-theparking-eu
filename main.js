@@ -41,21 +41,31 @@ module.exports = async (input, inputSecret) => {
 
 
   /* FF injections */
+  const lib = { input, inputSecret, puppeteer, echo, ff, cheerio, lib_time, lib_text, postgreSQL };
   ff.xInject(x);
-  ff.libInject({ input, inputSecret, puppeteer, echo, ff, cheerio, lib_time, lib_text, postgreSQL });
+  ff.libInject(lib);
 
 
   /* process */
-  await ff.one(browserPage);
-  await ff.one(homepageOpen);
+  let output;
+  try {
+    await ff.one(browserPage);
+    await ff.one(homepageOpen);
 
-  await ff.serial([
-    searchResults_extract,
-    detailLinks_extract_and_save,
-    searchResults_next]);
-  await ff.repeat(input.max_search_pages);
+    await ff.serial([
+      searchResults_extract,
+      detailLinks_extract_and_save,
+      searchResults_next]);
+    output = await ff.repeat(input.max_search_pages);
 
-  await ff.serial([browserClose]);
+  } catch (err) {
+    echo.error(err);
+    throw err;
+  } finally {
+    setTimeout(() => {
+      ff.one(browserClose);
+    }, 10000);
+  }
 
-  return;
+  return output;
 };

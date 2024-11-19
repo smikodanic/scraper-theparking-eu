@@ -30,13 +30,14 @@ module.exports = async (x, lib) => {
     await page2.goto(url, {
       waitUntil: 'domcontentloaded',
       timeout: 8000
-    }).catch(err => console.log(err.message));
+    }).catch(err => echo.error(err));
 
     // wait to load content
     await ff.delayRnd(2100, 5500);
 
     // extract details
-    const html = await page2.content();
+    const html = await page2.content().catch(err => echo.error(err));
+    if (!html) { continue; }
     const $ = cheerio.load(html);
 
     // redirect_url
