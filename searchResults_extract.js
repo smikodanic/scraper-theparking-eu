@@ -15,6 +15,7 @@ module.exports = async (x, lib) => {
 
   x.searchpage_url = await page.url();
 
+  await page.waitForSelector('body').catch(err => echo.warn(err.message));
   const html = await page.content();
   const $ = cheerio.load(html);
 

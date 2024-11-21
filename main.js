@@ -6,6 +6,7 @@ const cheerio = require('cheerio');
 // libs
 const lib_time = require('./lib_time.js');
 const lib_text = require('./lib_text.js');
+const countriesJson = require('./countries.json');
 
 
 // functions
@@ -13,6 +14,7 @@ const PostgreSQL = require('./PostgreSQL.js');
 const browserPage = require('./browserPage.js');
 const browserClose = require('./browserClose.js');
 const homepageOpen = require('./homepageOpen.js');
+const searchResults_gotoPage = require('./searchResults_gotoPage.js');
 const searchResults_extract = require('./searchResults_extract.js');
 const detailLinks_extract_and_save = require('./detailLinks_extract_and_save.js');
 const searchResults_next = require('./searchResults_next.js');
@@ -33,7 +35,7 @@ module.exports = async (input, inputSecret) => {
   /* define lib */
   const eventEmitter = global.dex8.eventEmitter;
   const ff = new FunctionFlow({ debug: false, msDelay: 1300 }, eventEmitter);
-  const echo = new Echo(true, 80, eventEmitter);
+  const echo = new Echo(true, 130, eventEmitter);
 
   // PostgreSQL
   const { PG_DATABASE, PG_USERNAME, PG_PASSWORD, PG_HOST, PG_PORT } = inputSecret;
@@ -41,7 +43,7 @@ module.exports = async (input, inputSecret) => {
 
 
   /* FF injections */
-  const lib = { input, inputSecret, puppeteer, echo, ff, cheerio, lib_time, lib_text, postgreSQL };
+  const lib = { input, inputSecret, puppeteer, echo, ff, cheerio, lib_time, lib_text, postgreSQL, countriesJson };
   ff.xInject(x);
   ff.libInject(lib);
 
@@ -51,6 +53,7 @@ module.exports = async (input, inputSecret) => {
   try {
     await ff.one(browserPage);
     await ff.one(homepageOpen);
+    await ff.one(searchResults_gotoPage);
 
     await ff.serial([
       searchResults_extract,

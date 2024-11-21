@@ -106,3 +106,8 @@ The "redirect_url" is usually redirected to other web site pages such as:
 - https://www.njuskalo.hr/auti/vw-golf-7-variant-1.6-tdi-teretno-n1-1-vlasnik-garancija-12-mjeseci-oglas-41875494
 - https://www.autohero.com/it/v1/x/id/9e83db12-dbfa-44da-8a73-2e9e2f0730a7/?MID=IT_COP_14-236_1_3_2-0-0-0_0_0&utm_expid=.rB2JTcj8iP4w1fzniRQxso.0
 - https://www.bolha.com/avto-oglasi/vw-golf-vii-7-r-line-letnik-2015-138000-km-diesel-2.0-110kw-deli-oglas-1579642
+
+
+TODO
+- save cookie
+- use ctrl.set_pageReload(0)

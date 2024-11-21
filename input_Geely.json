@@ -1,0 +1,8 @@
+{
+  "headless": false,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+  "search_term": "Geely",
+  "countries": ["Germany", "France", "Belgium"],
+  "from_search_page": 1,
+  "max_search_pages": 100
+}

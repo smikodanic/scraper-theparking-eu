@@ -29,13 +29,14 @@ module.exports = async (x, lib) => {
     await echo.log(`  ...opening ${url}`);
     await page2.goto(url, {
       waitUntil: 'domcontentloaded',
-      timeout: 8000
+      timeout: 13000
     }).catch(err => echo.error(err));
 
     // wait to load content
-    await ff.delayRnd(2100, 5500);
+    await ff.delayRnd(4000, 8000);
 
     // extract details
+    await page2.waitForSelector('body').catch(err => echo.warn(err.message));
     const html = await page2.content().catch(err => echo.error(err));
     if (!html) { continue; }
     const $ = cheerio.load(html);
@@ -82,7 +83,7 @@ module.exports = async (x, lib) => {
 
     // debug
     await echo.warn(` "cars" count: ${totalCars}`);
-    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.color} | ${car_info.doors} | ${car_info.category} | ${car_info.year} | ${car_info.mileage_km} km | ${car_info.price} € | ${car_info.ad_title}`);
+    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.color} | ${car_info.doors} | ${car_info.category} | ${car_info.year} | ${car_info.mileage_km} km | ${car_info.price} € | ${car_info.location} | ${car_info.ad_title}`);
     await echo.log();
 
     i++;
