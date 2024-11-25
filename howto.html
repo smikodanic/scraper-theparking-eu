@@ -1,46 +1,39 @@
 <h1>scraper-theparking-eu</h1>
-<p>Extract car details from theparking.eu</p>
+<p>Extract car details from www.theparking.eu website.</p>
 
-Here are the possible input field values:
+The <b>input.json</b> example:
+<pre><code>{
+  "headless": false,
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+  "search_term": "VW Caddy",
+  "countries": ["Germany", "France", "Belgium"],
+  "from_search_page": 1,
+  "max_search_pages": 100
+}
+</code></pre>
+
+<br>Explanation of the <b>input.json</b> fields:
+
+<h3>headless</h3>
+Determine if the browser will be opened in the headless or non-headles (visual) mode.
+<br>Values: old, new, false
+<br>In most cases use <b>headless: false</b>
+
+
+<h3>user_agent</h3>
+The user agent which scraper will use.
+<br>Example: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 
 <h3>search_term</h3>
-<br>Audi
-<br>Acura
-<br>Alfa Romeo
-<br>Bentley
-<br>Supercar
-<br>BMW
-<br>Bugatti
-<br>BYD
-<br>Chevrolet
-<br>Chrysler
-<br>Cadillac
-<br>Dodge
-<br>Fiat
-<br>Ford
-<br>GMC
-<br>Honda
-<br>Hyundai
-<br>Hummer
-<br>Isuzu
-<br>Jaguar
-<br>KIA
-<br>Lamborghini
-<br>Land Rover
-<br>Lexus
-<br>Mazda
-<br>Mini
-<br>Mercedes Benz
-<br>Mitsubishi
-<br>Nissan
-<br>Porsche
-<br>RAM
-<br>Subaru
-<br>Toyota
-<br>Tesla
-<br>Volvo
+It's the search term which scraper enter in the theparking.eu search field.
+<br><i>If it's minus (-) then all car makes will be listed.</i>
+<br>Audi, Acura, Alfa Romeo, Bentley, Supercar, BMW, Bugatti, BYD, Chevrolet, Chrysler, Cadillac, Dodge, Fiat, Ford, GMC, Honda, Hyundai, Hummer, Isuzu, Jaguar, KIA, Lamborghini, Land Rover, Lexus, Mazda, Mini, Mercedes Benz, Mitsubishi, Nissan, Porsche, RAM, Subaru, Toyota, Tesla, Volvo
 
-<h3>country</h3>
+<h3>countries</h3>
+It's an array of countries to filter search results.
+For example if you want to fetch cars only from Germany and france use <b>"countries": ["Germany", "France"]</b>.
+<br>In case that you want to fetch cars from all countries set this array empty: <b>"countries": []</b>
+<br>Available countries:
 <br>"ALBANIA": 102,
 <br>"ANDORRA": 46,
 <br>"ARGENTINA": 52,
@@ -91,3 +84,46 @@ Here are the possible input field values:
 <br>"UKRAINE": 48,
 <br>"UNITED ARAB EMIRATES": 66,
 <br>"UNITED STATES": 16
+
+<h3>sort_by</h3>
+This parameter will determine how results will be sorted before scraper starts to extract data.
+<br>Use one of this values: date, prix_croissant, prix_decroissant, km, km_decroissant, millesime_croissant, millesime_decroissant, distance
+<br>The defult value is distance.
+<br><b>date</b> - First listing date
+<br><b>prix_croissant</b> - Price (ascending)
+<br><b>prix_decroissant</b> - Price (descending)
+<br><b>km</b> - Kilometer
+<br><b>km_decroissant</b> - Kilometer (descending)
+<br><b>millesime_croissant</b> - Model year (ascending)
+<br><b>millesime_decroissant</b> - Model year (descending)
+<br><b>distance</b> - Distance
+
+
+<h3>from_search_page</h3>
+Sometimes, you may need to start scraping from a specific search results page.
+For example, if you define "from_search_page": 5, the scraper will begin directly from search results page 5 when initiated.
+This approach can significantly speed up the scraping process.
+
+
+<h3>max_search_pages</h3>
+This parameter defines how many search pages will be scraped.
+<br>For example if you define:
+<pre><code>"from_search_page": 1, "max_search_pages": 100</code></pre>
+the scraper will extract cars from page 5,6,7 ... 105
+
+
+<style scoped>
+  body {
+    font: 18px Verdana;
+  }
+
+  pre>code {
+    color: maroon;
+    font-weight: bold;
+  }
+
+  h3 {
+    margin-bottom: 5px;
+    color: Navy;
+  }
+</style>

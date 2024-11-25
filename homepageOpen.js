@@ -5,6 +5,7 @@ module.exports = async (x, lib) => {
   const search_term = lib.input.search_term ?? '';
   const countriesJson = lib.countriesJson;
   const countries = lib.input.countries?.map(country => country.toUpperCase()); // uppercase all countries entered in the input
+  const sort_by = lib.input.sort_by;
 
 
   await echo.log('----- homepageOpen -----');
@@ -45,25 +46,31 @@ module.exports = async (x, lib) => {
   await ff.delay(3400);
 
 
+  let current_url = await page.url(); // https://www.theparking.eu/#!/used-cars/vw.html
+  current_url = decodeURIComponent(current_url); // https://www.theparking.eu/#!/used-cars/Fiat.html%3Ftri%3Ddate -> https://www.theparking.eu/#!/used-cars/Fiat.html?tri=date
+
   /*** add country ids in the URL ***/
   if (countries?.length) {
-    await echo.log(` countries selected: ${countries}`);
-    let current_url = await page.url(); // https://www.theparking.eu/#!/used-cars/vw.html
-    current_url = decodeURIComponent(current_url); // https://www.theparking.eu/#!/used-cars/Fiat.html%3Ftri%3Ddate -> https://www.theparking.eu/#!/used-cars/Fiat.html?tri=date
+    await echo.log(` selected countries: ${countries}`);
     const id_pays_arr = [];
     for (const [countryJson, id] of Object.entries(countriesJson)) {
       if (countries.includes(countryJson)) { id_pays_arr.push(id); }
     }
     const id_pays_val = id_pays_arr.join('|');
-    const url_countries = current_url.includes('?') ? current_url + `&id_pays=${id_pays_val}` : current_url + `?id_pays=${id_pays_val}`;
+    current_url = current_url.includes('?') ? current_url + `&id_pays=${id_pays_val}` : current_url + `?id_pays=${id_pays_val}`;
+  }
 
-    // open new URL with countries
-    await echo.log(` ...opening URL with selected countries: ${url_countries}`);
-    await page.goto(url_countries, {
+  if (!!sort_by) {
+    await echo.log(` selected sort_by: "${sort_by}"`);
+    current_url = current_url.includes('?') ? current_url + `&tri=${sort_by}` : current_url + `?tri=${sort_by}`;
+  }
+
+  if (countries?.length || !!sort_by) {
+    await echo.log(` ...opening new URL: ${current_url}`);
+    await page.goto(current_url, {
       waitUntil: 'load',
-      timeout: 8000
+      timeout: 21000
     }).catch(err => echo.error(err));
-
   }
 
 

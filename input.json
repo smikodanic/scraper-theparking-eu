@@ -3,6 +3,7 @@
   "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
   "search_term": "VW Caddy",
   "countries": ["Germany", "France", "Belgium"],
+  "sort_by": "date",
   "from_search_page": 1,
   "max_search_pages": 100
 }
