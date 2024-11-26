@@ -21,7 +21,7 @@ module.exports = async (x, lib) => {
 
 
   // go to next page
-  const nextLink_EH = await page.waitForSelector('li.btn-next>a', { timeout: 3400 }).catch(err => echo.warn(err.message));
+  const nextLink_EH = await page.waitForSelector('li.btn-next>a', { timeout: 10000 }).catch(err => echo.warn(err.message));
   if (!nextLink_EH) {
     await echo.log(' -no next search result page. Stop the scraper.');
     ff.stop();
