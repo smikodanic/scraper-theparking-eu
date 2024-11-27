@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const chalk = require('chalk');
 
 // models
-const cars_model = require('./pgmodel.cars.js');
+const cars_model = require('./pgmodel.scraper_theparking_eu.js');
 
 
 class PostgreSQL {

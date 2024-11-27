@@ -99,8 +99,8 @@ module.exports = async (x, lib) => {
 
 const upsertCar = async (car_info, lib) => {
   const { echo, postgreSQL } = lib;
-  const carsMD = postgreSQL.sequelize.models['carsMD'];
-  const result_arr = await carsMD.upsert(car_info);
+  const scraper_theparking_euMD = postgreSQL.sequelize.models['scraper_theparking_euMD'];
+  const result_arr = await scraper_theparking_euMD.upsert(car_info);
   const result_obj = result_arr[0];
   // console.log(result_obj);
   await echo.warn(' \u2713 saved new doc_id:', result_obj.dataValues.car_id);
@@ -109,8 +109,8 @@ const upsertCar = async (car_info, lib) => {
 
 const carExists = async (car_detail_url, lib) => {
   const { postgreSQL } = lib;
-  const carsMD = postgreSQL.sequelize.models['carsMD'];
-  const record = await carsMD.findOne({
+  const scraper_theparking_euMD = postgreSQL.sequelize.models['scraper_theparking_euMD'];
+  const record = await scraper_theparking_euMD.findOne({
     where: { car_detail_url }
   });
   return !!record;
@@ -119,7 +119,7 @@ const carExists = async (car_detail_url, lib) => {
 
 const countCars = async (lib) => {
   const { postgreSQL } = lib;
-  const carsMD = postgreSQL.sequelize.models['carsMD'];
-  const totalCars = await carsMD.count();
+  const scraper_theparking_euMD = postgreSQL.sequelize.models['scraper_theparking_euMD'];
+  const totalCars = await scraper_theparking_euMD.count();
   return totalCars;
 };

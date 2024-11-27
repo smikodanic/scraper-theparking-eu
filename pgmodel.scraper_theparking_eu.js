@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  return sequelize.define('carsMD', {
+  return sequelize.define('scraper_theparking_euMD', {
     car_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -100,7 +100,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     }
   }, {
-    tableName: 'cars',
+    tableName: 'scraper_theparking_eu',
     timestamps: false,
   });
 
