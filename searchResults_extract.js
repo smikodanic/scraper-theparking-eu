@@ -65,9 +65,9 @@ module.exports = async (x, lib) => {
     car_info.date_published = $(this).find('p.btn-publication').text() || '';
     car_info.date_published = lib_time.convertToISO(car_info.date_published);
 
-    // location
-    car_info.location = $(this).find('div.location>span.upper').text()?.trim() || '';
-    car_info.location = lib_text.capitalize(car_info.location);
+    // country
+    car_info.country = $(this).find('div.location>span.upper').text()?.trim() || '';
+    car_info.country = lib_text.capitalize(car_info.country);
 
     // fuel
     car_info.fuel = $(this).find('div.bigScreen>ul.info.clearfix>li:nth-of-type(1)').text() || '';
@@ -93,7 +93,7 @@ module.exports = async (x, lib) => {
   // debug
   let i = 1;
   for (const car_info of x.car_infos) {
-    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.price} ${car_info.price_unit} | ${car_info.date_published} | ${car_info.location} | ${car_info.fuel} | ${car_info.mileage_km} km | ${car_info.year} | ${car_info.transmission} | image_url: ${!!car_info.image_url} | car_detail_url: ${!!car_info.car_detail_url}`);
+    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.price} ${car_info.price_unit} | ${car_info.date_published} | ${car_info.country} | ${car_info.fuel} | ${car_info.mileage_km} km | ${car_info.year} | ${car_info.transmission} | image_url: ${!!car_info.image_url} | car_detail_url: ${!!car_info.car_detail_url}`);
     i++;
   }
 

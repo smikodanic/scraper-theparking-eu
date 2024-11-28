@@ -28,7 +28,7 @@ module.exports = async (input, inputSecret) => {
   const x = {
     searchpage_num: 1,
     searchpage_url: '', // https://www.theparking.eu/used-cars/VW-caddy.html
-    car_infos: [] // [{searchpage_num, searchpage_url, car_detail_url, redirect_url, make, model, version,  date_published, location, fuel, mileage, year, transmission,   color, doors, category, ad_title}, ...]
+    car_infos: [] // [{searchpage_num, searchpage_url, car_detail_url, redirect_url, make, model, version,  date_published, country, fuel, mileage, year, transmission,   color, doors, category, ad_title}, ...]
   };
 
 

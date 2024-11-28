@@ -83,7 +83,7 @@ module.exports = async (x, lib) => {
 
     // debug
     await echo.warn(` "cars" count: ${totalCars}`);
-    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.color} | ${car_info.doors} | ${car_info.category} | ${car_info.year} | ${car_info.mileage_km} km | ${car_info.price} € | ${car_info.location} | ${car_info.ad_title}`);
+    await echo.log(`${i}. ${car_info.make} | ${car_info.model} | ${car_info.version} | ${car_info.color} | ${car_info.doors} | ${car_info.category} | ${car_info.year} | ${car_info.mileage_km} km | ${car_info.price} € | ${car_info.country} | ${car_info.ad_title}`);
     await echo.log();
 
     i++;

@@ -83,7 +83,7 @@ Here is the example of the saved data in the "the parking_eu" collection:
     "date_published" : ISODate("2023-03-21T00:00:00.000+0000"), 
     "doors" : "5", 
     "fuel" : "diesel", 
-    "location" : "Slovenia", 
+    "country" : "Slovenia", 
     "make" : "Volkswagen", 
     "mileage" : "138,000 Km", 
     "model" : "Golf", 

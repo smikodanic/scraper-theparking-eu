@@ -1,6 +1,6 @@
 {
   "name": "scraper-theparking-eu",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Extract car details from theparking.eu",
   "main": "main.js",
   "scripts": {
