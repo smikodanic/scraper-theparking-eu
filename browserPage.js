@@ -3,7 +3,6 @@ const os = require('os');
 const path = require('path');
 
 
-
 /**
  * Open the browser and a tab.
  */
@@ -30,6 +29,7 @@ module.exports = async (x, lib) => {
     defaultViewport: null, // ensure Puppeteer doesn't override your viewport settings
     args: [
       '--start-maximized', // this flag maximizes the browser window
+      `--display=${process.env.DISPLAY ?? ':0'}` // fix for LXDE desktops
     ],
     ignoreDefaultArgs: ['--enable-automation'] // remove "Chrome is being controlled by automated test software"
   };
