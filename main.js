@@ -64,10 +64,9 @@ module.exports = async (input, inputSecret) => {
   } catch (err) {
     echo.error(err);
     console.log(err);
+    throw err;
   } finally {
-    setTimeout(() => {
-      ff.one(browserClose);
-    }, 10000);
+    await browserClose(x, lib);
   }
 
   return output;
